@@ -23,5 +23,5 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/username/package:latest
-            ghcr.io/username/package:${{ github.sha }}
+            ghcr.io/michaeljohannesmeier/testhtml:latest
+            ghcr.io/michaeljohannesmeier/testhtml:${{ github.sha }}

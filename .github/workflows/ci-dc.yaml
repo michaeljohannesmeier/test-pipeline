@@ -49,8 +49,8 @@ jobs:
         with:
           namespace: default
           manifests: |
-            kubernetes/deployment.yaml
-            kubernetes/ingress.yaml
-            kubernetes/service.yaml
+            kubernetes/deployment.yml
+            kubernetes/ingress.yml
+            kubernetes/service.yml
           images: |
             ghcr.io/michaeljohannesmeier/testhtml:latest

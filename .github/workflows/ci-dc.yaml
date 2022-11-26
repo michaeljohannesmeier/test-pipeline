@@ -25,3 +25,32 @@ jobs:
           tags: |
             ghcr.io/michaeljohannesmeier/testhtml:latest
             ghcr.io/michaeljohannesmeier/testhtml:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    name: Deploy
+    if: github.ref == 'refs/heads/master'
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set the Kubernetes context
+        uses: azure/k8s-set-context@v2
+        with:
+          method: service-account
+          k8s-url: 20.229.158.1
+          k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
+
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Deploy to the Kubernetes cluster
+        uses: azure/k8s-deploy@v1
+        with:
+          namespace: default
+          manifests: |
+            kubernetes/deployment.yaml
+            kubernetes/ingress.yaml
+            kubernetes/service.yaml
+          images: |
+            ghcr.io/michaeljohannesmeier/testhtml:latest

@@ -49,6 +49,9 @@ jobs:
       - name: Create annotation for build error
         run: "ls -la $GITHUB_WORKSPACE/kubernetes/.kube"
 
+      - name: Get kubectl version
+        run: "kubectl version"
+
       - name: Deploy to the Kubernetes cluster
         uses: azure/k8s-deploy@v1
         with:

@@ -51,7 +51,7 @@ jobs:
         run: "ls -la $GITHUB_WORKSPACE/kubernetes/.kube"
 
       - name: Get kubectl version
-        run: "kubectl version"
+        run: "kubectl --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config version"
 
       - name: Deploy to the Kubernetes cluster
         uses: azure/k8s-deploy@v1

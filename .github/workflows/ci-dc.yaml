@@ -54,4 +54,4 @@ jobs:
         run: "kubectl --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config version"
 
       - name: Get kubectl version
-        run: "kubectl cp --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config $GITHUB_WORKSPACE/kubernetes/manifests /home/mj1020/apps/test"
+        run: "kubectl --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config cp $GITHUB_WORKSPACE/kubernetes/manifests /home/mj1020/apps/test"

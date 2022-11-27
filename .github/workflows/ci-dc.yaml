@@ -54,4 +54,4 @@ jobs:
         run: "kubectl --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config version"
 
       - name: Get kubectl version
-        run: "scp -r -i $GITHUB_WORKSPACE/kubernetes/.kube/k8s-master_key.pem $GITHUB_WORKSPACE/kubernetes/matifests mj1020@20.229.158.1:/home/mj1020/apps/test"
+        run: "kubectl cp --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config $GITHUB_WORKSPACE/kubernetes/manifests:/home/mj1020/apps/test"

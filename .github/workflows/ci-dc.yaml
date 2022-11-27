@@ -53,13 +53,5 @@ jobs:
       - name: Get kubectl version
         run: "kubectl --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config version"
 
-      - name: Deploy to the Kubernetes cluster
-        uses: azure/k8s-deploy@v1
-        with:
-          namespace: dev
-          manifests: |
-            kubernetes/deployment.yml
-            kubernetes/ingress.yml
-            kubernetes/service.yml
-          images: |
-            ghcr.io/michaeljohannesmeier/testhtml:latest
+      - name: Get kubectl version
+        run: "scp -r -i $GITHUB_WORKSPACE/kubernetes/.kube/k8s-master_key.pem $GITHUB_WORKSPACE/kubernetes/matifests mj1020@20.229.158.1:/home/mj1020/apps/test"

@@ -3,6 +3,7 @@ import glob
 import sys
 from cryptography.fernet import Fernet
 from enum import Enum
+import os
 
 class Mode(Enum):
     DECRYPT = "decrypt"
@@ -37,17 +38,20 @@ else:
 fernet = Fernet(key)
  
 # opening the original file to encrypt
-for filepath in glob.glob("**", recursive=True):
-    for file_to_encrypt in files_to_encrypt:
-        if not filepath.endswith(file_to_encrypt):
-            continue
-        with open(filepath, 'rb') as file:
-            original = file.read()
-        if de_or_encrypt == Mode.DECRYPT.value:
-            print(f"Decrypting: {filepath}")
-            de_or_encrypted = fernet.decrypt(original)
-        elif de_or_encrypt == Mode.ENCRYPT.value:
-            print(f"Encrypting: {filepath}")
-            de_or_encrypted = fernet.encrypt(original)
-        with open(filepath, 'wb') as encrypted_file:
-            encrypted_file.write(de_or_encrypted)
+# opening the original file to encrypt
+for root, _, files in os.walk("."):
+    for file in files:
+        for file_to_encrypt in files_to_encrypt:
+            filepath = os.path.join(root, file)
+            if not file.endswith(file_to_encrypt) or ".git" in filepath:
+                continue
+            with open(filepath, 'rb') as file:
+                original = file.read()
+            if de_or_encrypt == Mode.DECRYPT.value:
+                print(f"Decrypting: {filepath}")
+                de_or_encrypted = fernet.decrypt(original)
+            elif de_or_encrypt == Mode.ENCRYPT.value:
+                print(f"Encrypting: {filepath}")
+                de_or_encrypted = fernet.encrypt(original)
+            with open(filepath, 'wb') as encrypted_file:
+                encrypted_file.write(de_or_encrypted)

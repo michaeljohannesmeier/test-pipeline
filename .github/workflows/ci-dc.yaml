@@ -53,8 +53,5 @@ jobs:
       - name: List dir in .kube
         run: "ls -la $GITHUB_WORKSPACE/kubernetes/.kube"
 
-      - name: Get kubectl version
-        run: "kubectl --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config version --short"
-
-      - name: Get kubectl version
+      - name: Copy manifests
         run: "kubectl --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config cp $GITHUB_WORKSPACE/kubernetes/manifests /home/mj1020/apps/test"

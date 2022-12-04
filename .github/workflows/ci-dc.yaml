@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Decrypt files
-        run: "pip install cryptogryphy && python secrets.py decrypt ${{ secrets.DECRYPT_SECRET }}"
+        run: "pip install cryptography && python secrets.py decrypt ${{ secrets.DECRYPT_SECRET }}"
 
       - name: List dir in .kube
         run: "ls -la $GITHUB_WORKSPACE/kubernetes/.kube"

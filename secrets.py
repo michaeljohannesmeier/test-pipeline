@@ -39,11 +39,11 @@ fernet = Fernet(key)
  
 # opening the original file to encrypt
 # opening the original file to encrypt
-for root, _, files in os.walk("."):
-    for file in files:
+for root, _, filenames in os.walk("."):
+    for filename in filenames:
         for file_to_encrypt in files_to_encrypt:
-            filepath = os.path.join(root, file)
-            if not file.endswith(file_to_encrypt) or ".git" in filepath:
+            filepath = os.path.join(root, filename)
+            if not filename.endswith(file_to_encrypt) or ".git" in filepath:
                 continue
             with open(filepath, 'rb') as file:
                 original = file.read()

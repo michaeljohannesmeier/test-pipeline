@@ -1,23 +1,24 @@
-apiVersion: apps/v1
-kind: Deployment
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: test
-  labels:
-    app: test
+  name: test-ing
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
-  selector:
-    matchLabels:
-      app: test
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        app: test
-    spec:
-      containers:
-      - name: test
-        image: ghcr.io/michaeljohannesmeier/testhtml
-        ports:
-        - containerPort: 80
-        imagePullSecrets:
-          - name: github-container-registry
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - jaaluu.com
+      secretName: secret-jaaluu.com
+  rules:
+    - host: jaaluu.com
+      http:
+        paths:
+          - path: /testhtml(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: test-svc
+                port:
+                  number: 80

@@ -50,6 +50,9 @@ jobs:
       - name: Create annotation for build error
         run: "ls -la $GITHUB_WORKSPACE/kubernetes/.kube"
 
+      - name: Decrypt files
+        run: "pip install cryptogryphy && python secrets.py decrypt ${{ secrets.DECRYPT_SECRET }}"
+
       - name: Get kubectl version
         run: "kubectl --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config version"
 

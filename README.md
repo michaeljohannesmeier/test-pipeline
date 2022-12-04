@@ -1,4 +1,5 @@
 # SETUP K8s on VMs
+- follow: https://nicwortel.nl/blog/2022/continuous-deployment-to-kubernetes-with-github-actions
 
 - follow: https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/learn/lecture/20666298#overview
 

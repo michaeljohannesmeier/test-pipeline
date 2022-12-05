@@ -46,7 +46,7 @@ jobs:
         run: "source kubernetes/connect/.env"
 
       - name: Get pods test
-        run: "ssh -i kubernetes/connect/ssh_priv $USERNAME@$MASTER_NODE_IP kubectl get pods"
+        run: "ssh -i kubernetes/connect/ssh_priv meiemi@20.31.219.238 kubectl get pods"
 
       - name: Copy manifests
-        run: "scp -i kubernetes/connect/ssh_priv ./kubernetes/manifests/* $USERNAME@$MASTER_NODE_IP:/home/meiemi/apps/test/"
+        run: "scp -i kubernetes/connect/ssh_priv ./kubernetes/manifests/* meiemi@20.31.219.238:/home/meiemi/apps/test/"

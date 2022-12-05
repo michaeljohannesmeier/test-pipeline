@@ -42,8 +42,11 @@ jobs:
       - name: Decrypt files
         run: "pip install cryptography && python secrets.py decrypt ${{ secrets.DECRYPT_SECRET }}"
 
+      - name: Set env variables
+        run: "source kubernetes/connect/.env"
+
       - name: Get pods test
-        run: "ssh -i kubernetes/connect/ssh_priv get pods"
+        run: "ssh -i kubernetes/connect/ssh_priv $USERNAME@$MASTER_NODE_IP get pods"
 
       - name: Copy manifests
-        run: "scp -i kubernetes/connect/ssh_priv ./kubernetes/manifests/* meiemi@20.31.219.238:/home/meiemi/apps/test/"
+        run: "scp -i kubernetes/connect/ssh_priv ./kubernetes/manifests/* $USERNAME@$MASTER_NODE_IP:/home/meiemi/apps/test/"

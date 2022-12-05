@@ -20,7 +20,8 @@ files_to_encrypt = [
     "secret-cert-jaaluu.com.yml",
     "config",
     "env-vars.txt",
-    "ssh_priv"
+    "ssh_priv",
+    ".env"
 ]
 
 # key = Fernet.generate_key()

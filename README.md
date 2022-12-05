@@ -48,7 +48,7 @@ kubectl apply -f - -n kube-system
 
 
 ## Git pipeline
-kubectl create secret docker-registry github-container-registry --namespace=dev --docker-server=ghcr.io --docker-username=michaeljoahnnesmeier --docker-password=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
+kubectl create secret docker-registry github-container-registry --namespace=dev --docker-server=ghcr.io --docker-username=michaeljoahnnesmeier --docker-password=
 
 kubectl create serviceaccount github-actions
 kubectl create token github-actions

@@ -19,7 +19,8 @@ files_to_encrypt = [
     "generate-cloud-cfg.sh",
     "secret-cert-jaaluu.com.yml",
     "config",
-    "env-vars.txt"
+    "env-vars.txt",
+    "ssh_priv"
 ]
 
 # key = Fernet.generate_key()

@@ -36,22 +36,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-
-      - name: Set the Kubernetes context
-        uses: azure/k8s-set-context@v2
-        with:
-          method: service-account
-          k8s-url: 20.229.158.1
-          k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
-
       - name: Checkout source code
         uses: actions/checkout@v3
 
       - name: Decrypt files
         run: "pip install cryptography && python secrets.py decrypt ${{ secrets.DECRYPT_SECRET }}"
 
-      - name: List dir in .kube
-        run: "ls -la $GITHUB_WORKSPACE/kubernetes/.kube"
+      - name: Get pods test
+        run: "ssh -i kubernetes/connect/ssh_priv get pods"
 
       - name: Copy manifests
-        run: "kubectl --kubeconfig $GITHUB_WORKSPACE/kubernetes/.kube/config cp $GITHUB_WORKSPACE/kubernetes/manifests /home/meiemi/apps/test"
+        run: "scp -i kubernetes/connect/ssh_priv ./kubernetes/manifests/* meiemi@20.31.219.238:/home/meiemi/apps/test/"

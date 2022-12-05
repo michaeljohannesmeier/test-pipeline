@@ -45,6 +45,9 @@ jobs:
       - name: Set env variables
         run: "source kubernetes/connect/.env"
 
+      - name: Change permissions priv key
+        run: "chmod 600 kubernetes/connect/ssh_priv"
+
       - name: Get pods test
         run: "ssh -oStrictHostKeyChecking=no -i kubernetes/connect/ssh_priv meiemi@20.31.219.238 kubectl get pods"
 

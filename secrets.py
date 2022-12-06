@@ -18,6 +18,7 @@ files_to_encrypt = [
     "cloud.cfg",
     "generate-cloud-cfg.sh",
     "secret-cert-jaaluu.com.yml",
+    "secret-github.yml",
     "config",
     "env-vars.txt",
     "ssh_priv",
